@@ -17,6 +17,11 @@ html {
     0%, 100% { box-shadow: 0 0 50px var(--text-color); }
     50%       { box-shadow: 0 0 90px var(--text-color), 0 0 140px rgba(0, 70, 139, 0.35); }
 }
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
 /* Animations - End */
 
 /* Reset attributes for all elements */
@@ -206,6 +211,100 @@ nav ul li a.active {
     transform: translateY(-5px);
 }
 
+/* Role row - badge + open to work */
+.role-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Open to work badge */
+.open-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #888;
+}
+
+.open-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #888;
+    flex-shrink: 0;
+}
+
+/* Skills section */
+.skills-section {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.skills-section h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(130deg, #383528 0%, #191919 100%);
+    border: 1px solid #3b3b3b;
+    border-radius: 14px;
+    padding: 18px 22px;
+    min-width: 85px;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.skill-item:hover {
+    border-color: var(--text-color);
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 70, 139, 0.4);
+}
+
+.skill-item i {
+    font-size: 34px;
+}
+
+.skill-item p {
+    font-size: 12px;
+    color: #c3c3c3;
+    margin: 0;
+    width: auto;
+    line-height: normal;
+    font-weight: 500;
+}
+
+/* Inline text link */
+.inline-link {
+    color: var(--text-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.inline-link:hover {
+    border-bottom-color: var(--text-color);
+}
+
 /* Social Media Icons */
 .social {
     display: flex;
@@ -261,12 +360,50 @@ nav ul li a.active {
     width: 100%;
     min-height: 100vh;
     z-index: -1;
-    padding: 250px 0 50px;
+    padding: 150px 0 50px;
 }
 
-.work h2 {
-    color: var(--white);
+.work-hero {
     text-align: center;
+    margin-bottom: 60px;
+}
+
+.work-hero h1 {
+    font-size: 3rem;
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.work-hero p {
+    color: #c3c3c3;
+    font-size: 16px;
+}
+
+.github-stats-section {
+    margin-bottom: 60px;
+}
+
+.github-stats-section h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.github-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.github-cards img {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
 }
 /* Work Elements - End */
 
@@ -472,6 +609,10 @@ footer p {
     nav ul li {
         text-align: center;
         padding: 10px 0;
+    }
+
+    .role-row {
+        justify-content: center;
     }
 
     .contact-bubbles {

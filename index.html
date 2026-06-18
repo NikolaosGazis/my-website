@@ -19,6 +19,9 @@
         <!-- Style Linking -->
         <link rel="stylesheet" href="style.css">
 
+        <!-- Devicons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
         <!-- Favicons -->
         <link rel="icon" type="image/ico" sizes="32x32" href="favicons/favicon-big.ico">
         <link rel="icon" type="image/ico" sizes="16x16" href="favicons/favicon-small.ico">
@@ -45,9 +48,13 @@
             <div class="container">
                 <div class="about-info">
                     <div class="left"> <!-- Description and Buttons -->
-                        <span>Software Developer</span>
+                        <div class="role-row">
+                            <span>Software Developer</span>
+                            <div class="open-badge">Offline</div>
+                        </div>
                         <h1>About Me</h1>
-                        <p> Hello! My name is Nick Gazis, a fifth-year Computer Science and Telecommunications student at the University of Thessaly, Greece.
+                        <p> Hello! My name is Nick Gazis, a fifth-year Computer Science and Telecommunications student at the
+                            <a href="https://www.uth.gr/en" target="_blank" rel="noopener noreferrer" class="inline-link">University of Thessaly</a>, Greece.
                             My academic studies have equipped me with a solid understanding in concepts like Algorithms, Data Structures, Machine Learning along with
                             Networking for complex problem solving.
                         </p>
@@ -77,6 +84,32 @@
                         </div>
                     </div>
                 </div>
+                <div class="skills-section">
+                    <h3>Tech Stack</h3>
+                    <div class="skills">
+                        <div class="skill-item">
+                            <i class="devicon-python-plain colored"></i>
+                            <p>Python</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-typescript-plain colored"></i>
+                            <p>TypeScript</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-html5-plain colored"></i>
+                            <p>HTML</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-css3-plain colored"></i>
+                            <p>CSS</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="devicon-javascript-plain colored"></i>
+                            <p>JavaScript</p>
+                        </div>
+                    </div>
+                </div>
+
                 <footer>
                     <p class="ftext">©2026 Nick Gazis. All rights reserved.</p>
                 </footer>
@@ -95,7 +128,7 @@
             });
 
             // Staggered fade-in for left content
-            const fadeEls = document.querySelectorAll('.left h1, .left p, .left .btn, .left .social');
+            const fadeEls = document.querySelectorAll('.role-row, .left h1, .left p, .left .btn, .left .social');
             fadeEls.forEach((el, i) => {
                 el.style.opacity = '0';
                 el.style.animation = `fadeInUp 0.6s ease ${(i + 1) * 0.18}s forwards`;
@@ -105,7 +138,7 @@
             right.style.animation = 'fadeInUp 0.6s ease 0.2s forwards';
 
             // Typewriter on role badge
-            const roleEl = document.querySelector('.left span');
+            const roleEl = document.querySelector('.role-row span');
             const roleText = roleEl.textContent;
             roleEl.textContent = '|';
             let idx = 0;
