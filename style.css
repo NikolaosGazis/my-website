@@ -39,6 +39,21 @@ html {
     --white: #fff;
     --black: #000;
     --mob-color: #2d2d2d;
+    --text-secondary: #c3c3c3;
+    --border-color: #3b3b3b;
+    --card-bg: var(--card-bg);
+    --text-muted: #666;
+}
+
+[data-theme="light"] {
+    --bg-color: #f4f4f4;
+    --white: #1a1a1a;
+    --black: #f4f4f4;
+    --mob-color: #e0e0e0;
+    --text-secondary: #555;
+    --border-color: #d0d0d0;
+    --card-bg: linear-gradient(130deg, #e8e8e8 0%, #f0f0f0 100%);
+    --text-muted: #999;
 }
 
 /* Set maximum width for containers and center */
@@ -62,12 +77,36 @@ header {
 nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 20px;
 }
 
 /* Name Styling */
 nav .name {
     z-index: 1;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ng-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    flex-shrink: 0;
+    letter-spacing: 0;
+}
+
+.ng-logo span {
+    color: var(--text-color);
 }
 
 nav .name a {
@@ -92,7 +131,37 @@ nav ul {
     font-size: 28px;
     list-style: none;
     z-index: 1;
-    left: -40px;
+}
+
+/* Nav right side — theme toggle + burger wrapper */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--white);
+    font-size: 18px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+    border-color: var(--text-color);
+    color: var(--text-color);
+    transform: rotate(20deg);
 }
 
 /* Link Styling */
@@ -159,8 +228,8 @@ nav ul li a.active {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    background: linear-gradient(130deg, #383528 0%, #191919 100%);
-    border: 1px solid #3b3b3b;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
     color: var(--white);
     padding: 5px 25px;
     border-radius: 25px;
@@ -178,7 +247,7 @@ nav ul li a.active {
     font-size: 16px;
     font-weight: 400;
     line-height: 25px;
-    color: #c3c3c3;
+    color: var(--text-secondary);
     margin-bottom: 35px;
 }
 
@@ -249,7 +318,7 @@ nav ul li a.active {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: #666;
+    color: var(--text-muted);
     margin-bottom: 25px;
 }
 
@@ -265,8 +334,8 @@ nav ul li a.active {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(130deg, #383528 0%, #191919 100%);
-    border: 1px solid #3b3b3b;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
     border-radius: 14px;
     padding: 18px 22px;
     min-width: 85px;
@@ -286,7 +355,7 @@ nav ul li a.active {
 
 .skill-item p {
     font-size: 12px;
-    color: #c3c3c3;
+    color: var(--text-secondary);
     margin: 0;
     width: auto;
     line-height: normal;
@@ -328,8 +397,8 @@ nav ul li a.active {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: linear-gradient(130deg, #383528 0%, #191919 100%);
-    border: 1px solid #3b3b3b;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
     transition: 0.4s ease; /* Hover smoothness */
 }
 
@@ -375,7 +444,7 @@ nav ul li a.active {
 }
 
 .work-hero p {
-    color: #c3c3c3;
+    color: var(--text-secondary);
     font-size: 16px;
 }
 
@@ -388,7 +457,7 @@ nav ul li a.active {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: #666;
+    color: var(--text-muted);
     text-align: center;
     margin-bottom: 30px;
 }
@@ -398,6 +467,14 @@ nav ul li a.active {
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.activity-graph {
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
 }
 
 .github-cards img {
@@ -430,7 +507,7 @@ nav ul li a.active {
 }
 
 .contact-hero p {
-    color: #c3c3c3;
+    color: var(--text-secondary);
     font-size: 16px;
 }
 
@@ -454,8 +531,8 @@ nav ul li a.active {
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    background: linear-gradient(130deg, #383528 0%, #191919 100%);
-    border: 2px solid #3b3b3b;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -466,13 +543,13 @@ nav ul li a.active {
 .contact-bubble span {
     font-size: 15px;
     font-weight: 500;
-    color: #c3c3c3;
+    color: var(--text-secondary);
     transition: color 0.3s ease;
 }
 
 .contact-bubble small {
     font-size: 12px;
-    color: #666;
+    color: var(--text-muted);
     opacity: 0;
     transition: color 0.3s ease, opacity 0.3s ease;
 }
@@ -499,12 +576,12 @@ nav ul li a.active {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    background: #2d2d2d;
+    background: var(--mob-color);
     color: var(--white);
     padding: 12px 24px;
     border-radius: 8px;
     font-size: 14px;
-    border: 1px solid #3b3b3b;
+    border: 1px solid var(--border-color);
     opacity: 0;
     pointer-events: none;
     white-space: nowrap;

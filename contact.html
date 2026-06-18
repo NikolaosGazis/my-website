@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-theme="dark">
 
     <head>
         <meta charset="UTF-8">
+        <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="author" content="Nick Gazis">
@@ -29,14 +30,20 @@
             <div class="container">
                 <nav>
                     <div class="name">
+                        <div class="ng-logo"><span>N</span>G</div>
                         <a href="index.html"><span>Nick</span> Gazis</a>
                     </div>
-                    <button class="burger" id="burger" aria-label="Toggle navigation">&#9776;</button>
                     <ul id="nav-links">
                         <li><a href="index.html">About</a></li>
                         <li><a href="work.html">Work</a></li>
                         <li><a href="contact.html" class="active">Contact</a></li>
                     </ul>
+                    <div class="nav-right">
+                        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                            <ion-icon name="moon"></ion-icon>
+                        </button>
+                        <button class="burger" id="burger" aria-label="Toggle navigation">&#9776;</button>
+                    </div>
                 </nav>
             </div>
         </header>
@@ -48,7 +55,7 @@
                     <p>Feel free to reach out through any of the platforms below.</p>
                 </div>
                 <div class="contact-bubbles">
-                    <a href="https://github.com/NickGazis" target="_blank" rel="noopener noreferrer" class="contact-bubble">
+                    <a href="https://github.com/NikolaosGazis" target="_blank" rel="noopener noreferrer" class="contact-bubble">
                         <div class="bubble-icon">
                             <ion-icon name="logo-github"></ion-icon>
                         </div>
@@ -105,6 +112,18 @@
             const navLinks = document.getElementById('nav-links');
             burger.addEventListener('click', () => {
                 navLinks.classList.toggle('open');
+            });
+
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('ion-icon');
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                themeIcon.setAttribute('name', theme === 'dark' ? 'sunny' : 'moon');
+                localStorage.setItem('theme', theme);
+            }
+            applyTheme(localStorage.getItem('theme') || 'dark');
+            themeToggle.addEventListener('click', () => {
+                applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
             });
 
             // Staggered fade-in for contact bubbles

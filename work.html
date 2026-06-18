@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-theme="dark">
 
     <head>
         <meta charset="UTF-8">
+        <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="author" content="Nick Gazis">
@@ -29,14 +30,20 @@
             <div class="container">
                 <nav>
                     <div class="name">
+                        <div class="ng-logo"><span>N</span>G</div>
                         <a href="index.html"><span>Nick</span> Gazis</a>
                     </div>
-                    <button class="burger" id="burger" aria-label="Toggle navigation">&#9776;</button>
                     <ul id="nav-links">
                         <li><a href="index.html">About</a></li>
                         <li><a href="work.html" class="active">Work</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
+                    <div class="nav-right">
+                        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                            <ion-icon name="moon"></ion-icon>
+                        </button>
+                        <button class="burger" id="burger" aria-label="Toggle navigation">&#9776;</button>
+                    </div>
                 </nav>
             </div>
         </header>
@@ -50,9 +57,10 @@
 
                 <div class="github-stats-section">
                     <h3>GitHub Stats</h3>
+                    <img class="activity-graph" src="https://streak-stats.demolab.com/?user=NikolaosGazis&background=222222&border=3b3b3b&stroke=3b3b3b&ring=00468b&fire=00468b&currStreakLabel=00468b&sideLabels=c3c3c3&dates=c3c3c3&currStreakNum=ffffff&sideNums=ffffff&border_radius=10" alt="GitHub Streak" />
                     <div class="github-cards">
-                        <img src="https://github-readme-stats.vercel.app/api?username=NickGazis&show_icons=true&bg_color=222222&title_color=00468b&text_color=c3c3c3&icon_color=00468b&border_color=3b3b3b&border_radius=10&rank_icon=github" alt="Nick's GitHub Stats" />
-                        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NickGazis&layout=compact&bg_color=222222&title_color=00468b&text_color=c3c3c3&border_color=3b3b3b&border_radius=10" alt="Top Languages" />
+                        <img src="https://github-readme-stats.vercel.app/api?username=NikolaosGazis&show_icons=true&bg_color=222222&title_color=00468b&text_color=c3c3c3&icon_color=00468b&border_color=3b3b3b&border_radius=10&rank_icon=github" alt="Nick's GitHub Stats" />
+                        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NikolaosGazis&layout=compact&bg_color=222222&title_color=00468b&text_color=c3c3c3&border_color=3b3b3b&border_radius=10" alt="Top Languages" />
                     </div>
                 </div>
 
@@ -71,6 +79,18 @@
             const navLinks = document.getElementById('nav-links');
             burger.addEventListener('click', () => {
                 navLinks.classList.toggle('open');
+            });
+
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('ion-icon');
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                themeIcon.setAttribute('name', theme === 'dark' ? 'sunny' : 'moon');
+                localStorage.setItem('theme', theme);
+            }
+            applyTheme(localStorage.getItem('theme') || 'dark');
+            themeToggle.addEventListener('click', () => {
+                applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
             });
         </script>
     </body>
