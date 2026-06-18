@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="author" content="Nick Gazis">
+        <meta name="description" content="Contact Nick Gazis - Reach out via GitHub, LinkedIn, email, or social media.">
         <meta name="theme-color" content="#222222">
         <title> Nick Gazis - Contact </title>
 
@@ -28,9 +29,9 @@
             <div class="container">
                 <nav>
                     <div class="name">
-                        <a href="#"><span>Nick</span> Gazis</a>
+                        <a href="index.html"><span>Nick</span> Gazis</a>
                     </div>
-                    <button class="burger" id="burger">&#9776;</button>
+                    <button class="burger" id="burger" aria-label="Toggle navigation">&#9776;</button>
                     <ul id="nav-links">
                         <li><a href="index.html">About</a></li>
                         <li><a href="work.html">Work</a></li>
@@ -47,38 +48,38 @@
                     <p>Feel free to reach out through any of the platforms below.</p>
                 </div>
                 <div class="contact-bubbles">
-                    <a href="https://github.com/NickGazis" target="_blank" class="contact-bubble">
+                    <a href="https://github.com/NickGazis" target="_blank" rel="noopener noreferrer" class="contact-bubble">
                         <div class="bubble-icon">
                             <ion-icon name="logo-github"></ion-icon>
                         </div>
                         <span>GitHub</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/Nick-gazis-b258b5263/" target="_blank" class="contact-bubble">
+                    <a href="https://www.linkedin.com/in/Nick-gazis-b258b5263/" target="_blank" rel="noopener noreferrer" class="contact-bubble">
                         <div class="bubble-icon">
                             <ion-icon name="logo-linkedin"></ion-icon>
                         </div>
                         <span>LinkedIn</span>
                     </a>
-                    <a href="mailto:Nickgazis3008@gmail.com" class="contact-bubble">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Nickgazis3008@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-bubble">
                         <div class="bubble-icon">
                             <ion-icon name="mail"></ion-icon>
                         </div>
                         <span>Gmail</span>
                     </a>
-                    <a href="https://discord.com" target="_blank" class="contact-bubble">
+                    <div class="contact-bubble" onclick="copyDiscord()" style="cursor: pointer;">
                         <div class="bubble-icon">
                             <ion-icon name="logo-discord"></ion-icon>
                         </div>
                         <span>Discord</span>
                         <small>NTQ13</small>
-                    </a>
-                    <a href="https://www.instagram.com/nikos_gazis13/" target="_blank" class="contact-bubble">
+                    </div>
+                    <a href="https://www.instagram.com/nikos_gazis13/" target="_blank" rel="noopener noreferrer" class="contact-bubble">
                         <div class="bubble-icon">
                             <ion-icon name="logo-instagram"></ion-icon>
                         </div>
                         <span>Instagram</span>
                     </a>
-                    <a href="https://www.facebook.com/nikos.gazis.564/" target="_blank" class="contact-bubble">
+                    <a href="https://www.facebook.com/nikos.gazis.564/" target="_blank" rel="noopener noreferrer" class="contact-bubble">
                         <div class="bubble-icon">
                             <ion-icon name="logo-facebook"></ion-icon>
                         </div>
@@ -87,10 +88,12 @@
                 </div>
 
                 <footer>
-                    <p class="ftext">©2026 Nikoloas Gazis. All rights reserved.</p>
+                    <p class="ftext">©2026 Nick Gazis. All rights reserved.</p>
                 </footer>
             </div>
         </section>
+
+        <div class="toast" id="toast"></div>
 
         <!-- Import Icons Module -->
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -103,6 +106,24 @@
             burger.addEventListener('click', () => {
                 navLinks.classList.toggle('open');
             });
+
+            // Staggered fade-in for contact bubbles
+            document.querySelectorAll('.contact-bubble').forEach((el, i) => {
+                el.style.opacity = '0';
+                el.style.animation = `fadeInUp 0.5s ease ${i * 0.1 + 0.1}s forwards`;
+            });
+
+            function showToast(message) {
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2500);
+            }
+
+            function copyDiscord() {
+                navigator.clipboard.writeText('NTQ13').then(() => showToast('Discord username copied!'));
+            }
+
         </script>
     </body>
 

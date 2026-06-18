@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="author" content="Nick Gazis">
+        <meta name="description" content="Nick Gazis - Software Developer. Computer Science and Telecommunications student at the University of Thessaly.">
         <meta name="theme-color" content="#222222">
         <title> Nick Gazis - About </title>
         
@@ -28,10 +29,10 @@
             <div class="container">
                 <nav>
                     <div class="name">
-                        <a href="#"><span>Nick</span> Gazis</a>
+                        <a href="index.html"><span>Nick</span> Gazis</a>
                     </div>
-                    <button class="burger" id="burger">&#9776;</button>
-                    <ul>
+                    <button class="burger" id="burger" aria-label="Toggle navigation">&#9776;</button>
+                    <ul id="nav-links">
                         <li><a href="index.html" class="active">About</a></li>
                         <li><a href="work.html">Work</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -51,20 +52,20 @@
                             Networking for complex problem solving.
                         </p>
                         <div class="btn">
-                            <a href="files/cv.pdf" target="_blank">Download CV</a>
+                            <a href="files/cv.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
                         </div>
                         <div class="social">
                             <div class="social-links">
-                                <a href="https://github.com/NickGazis" target="_blank">
+                                <a href="https://github.com/NickGazis" target="_blank" rel="noopener noreferrer">
                                     <ion-icon name="logo-github"></ion-icon>
                                 </a>
-                                <a href="https://www.linkedin.com/in/Nick-gazis-b258b5263/" target="_blank">
+                                <a href="https://www.linkedin.com/in/Nick-gazis-b258b5263/" target="_blank" rel="noopener noreferrer">
                                     <ion-icon name="logo-linkedin"></ion-icon>
                                 </a>
-                                <a href="https://www.instagram.com/nikos_gazis13/" target="_blank">
+                                <a href="https://www.instagram.com/nikos_gazis13/" target="_blank" rel="noopener noreferrer">
                                     <ion-icon name="logo-instagram"></ion-icon>
                                 </a>
-                                <a href="https://www.facebook.com/nikos.gazis.564/" target="_blank">
+                                <a href="https://www.facebook.com/nikos.gazis.564/" target="_blank" rel="noopener noreferrer">
                                     <ion-icon name="logo-facebook"></ion-icon>
                                 </a>
                             </div>
@@ -86,12 +87,38 @@
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <!-- Scripts -->
-        <script> const burger = document.getElementById('burger'); 
-                const navLinks = document.getElementById('nav-links');
-                burger.addEventListener('click', () => {
+        <script>
+            const burger = document.getElementById('burger');
+            const navLinks = document.getElementById('nav-links');
+            burger.addEventListener('click', () => {
                 navLinks.classList.toggle('open');
-        });
-    </script>
+            });
+
+            // Staggered fade-in for left content
+            const fadeEls = document.querySelectorAll('.left h1, .left p, .left .btn, .left .social');
+            fadeEls.forEach((el, i) => {
+                el.style.opacity = '0';
+                el.style.animation = `fadeInUp 0.6s ease ${(i + 1) * 0.18}s forwards`;
+            });
+            const right = document.querySelector('.right');
+            right.style.opacity = '0';
+            right.style.animation = 'fadeInUp 0.6s ease 0.2s forwards';
+
+            // Typewriter on role badge
+            const roleEl = document.querySelector('.left span');
+            const roleText = roleEl.textContent;
+            roleEl.textContent = '|';
+            let idx = 0;
+            function typeRole() {
+                if (idx < roleText.length) {
+                    roleEl.textContent = roleText.substring(0, ++idx) + '|';
+                    setTimeout(typeRole, 75);
+                } else {
+                    roleEl.textContent = roleText;
+                }
+            }
+            setTimeout(typeRole, 150);
+        </script>
     </body>
 
 </html>

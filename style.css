@@ -2,6 +2,23 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Animations - Start */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-14px); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 50px var(--text-color); }
+    50%       { box-shadow: 0 0 90px var(--text-color), 0 0 140px rgba(0, 70, 139, 0.35); }
+}
+/* Animations - End */
+
 /* Reset attributes for all elements */
 * {
     margin: 0;
@@ -232,7 +249,7 @@ nav ul li a.active {
     object-fit: cover;
     border-radius: 50%;
     border: 4px solid var(--text-color);
-    box-shadow: 0 0 50px var(--text-color);
+    animation: float 4s ease-in-out infinite, glowPulse 3s ease-in-out infinite;
 }
 /* About Elements - End */
 
@@ -319,7 +336,8 @@ nav ul li a.active {
 .contact-bubble small {
     font-size: 12px;
     color: #666;
-    transition: color 0.3s ease;
+    opacity: 0;
+    transition: color 0.3s ease, opacity 0.3s ease;
 }
 
 .contact-bubble:hover .bubble-icon {
@@ -332,7 +350,36 @@ nav ul li a.active {
 .contact-bubble:hover small {
     color: var(--white);
 }
+
+.contact-bubble:hover small {
+    opacity: 1;
+}
 /* Contact Elements - End */
+
+/* Toast Notification - Start */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: #2d2d2d;
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    border: 1px solid #3b3b3b;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+/* Toast Notification - End */
 
 /* General Elements - Start */
 footer p {

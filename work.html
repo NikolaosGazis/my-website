@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="author" content="Nick Gazis">
+        <meta name="description" content="Nick Gazis - Work & Projects. Portfolio of software development projects.">
         <meta name="theme-color" content="#222222">
         <title> Nick Gazis - Work </title>
 
@@ -28,9 +29,10 @@
             <div class="container">
                 <nav>
                     <div class="name">
-                        <a href="#"><span>Nick</span> Gazis</a>
+                        <a href="index.html"><span>Nick</span> Gazis</a>
                     </div>
-                    <ul>
+                    <button class="burger" id="burger" aria-label="Toggle navigation">&#9776;</button>
+                    <ul id="nav-links">
                         <li><a href="index.html">About</a></li>
                         <li><a href="work.html" class="active">Work</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -42,8 +44,23 @@
         <section class="work">
             <div class="container">
                 <h2>WIP</h2>
+                <footer>
+                    <p class="ftext">©2026 Nick Gazis. All rights reserved.</p>
+                </footer>
             </div>
         </section>
+
+        <!-- Import Icons Module -->
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <!-- Scripts -->
+        <script>
+            const burger = document.getElementById('burger');
+            const navLinks = document.getElementById('nav-links');
+            burger.addEventListener('click', () => {
+                navLinks.classList.toggle('open');
+            });
+        </script>
     </body>
 
 </html>
