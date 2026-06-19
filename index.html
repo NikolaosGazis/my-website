@@ -146,7 +146,7 @@
                 applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
             });
 
-            // Staggered fade-in for left content
+            // Staggered fade-in for left content //
             const fadeEls = document.querySelectorAll('.role-row, .left h1, .left p, .left .btn, .left .social');
             fadeEls.forEach((el, i) => {
                 el.style.opacity = '0';
@@ -156,20 +156,58 @@
             right.style.opacity = '0';
             right.style.animation = 'fadeInUp 0.6s ease 0.2s forwards';
 
-            // Typewriter on role badge
+            // Text scramble on role badge //
             const roleEl = document.querySelector('.role-row span');
             const roleText = roleEl.textContent;
-            roleEl.textContent = '|';
-            let idx = 0;
-            function typeRole() {
-                if (idx < roleText.length) {
-                    roleEl.textContent = roleText.substring(0, ++idx) + '|';
-                    setTimeout(typeRole, 75);
-                } else {
+            const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let frame = 0;
+            const totalFrames = roleText.length * 3;
+            const scrambleInterval = setInterval(() => {
+                roleEl.textContent = roleText.split('').map((char, i) => {
+                    if (char === ' ') return ' ';
+                    if (i < Math.floor(frame / 3)) return char;
+                    return scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+                }).join('');
+                if (++frame > totalFrames) {
+                    clearInterval(scrambleInterval);
                     roleEl.textContent = roleText;
                 }
-            }
-            setTimeout(typeRole, 150);
+            }, 35);
+
+            // Scroll reveal for skill items //
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        skillObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            document.querySelectorAll('.skill-item').forEach((el, i) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = `opacity 0.4s ease ${i * 0.08}s, transform 0.4s ease ${i * 0.08}s, border-color 0.3s ease, box-shadow 0.3s ease`;
+                skillObserver.observe(el);
+            });
+
+            // Nav shrink on scroll //
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // Page transitions //
+            document.querySelectorAll('a[href]').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('#') && link.getAttribute('target') !== '_blank') {
+                    link.addEventListener('click', e => {
+                        e.preventDefault();
+                        document.body.classList.add('fade-out');
+                        setTimeout(() => window.location.href = href, 150);
+                    });
+                }
+            });
         </script>
     </body>
 

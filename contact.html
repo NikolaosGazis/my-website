@@ -114,6 +114,24 @@
                 navLinks.classList.toggle('open');
             });
 
+            // Nav shrink on scroll //
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // Page transitions //
+            document.querySelectorAll('a[href]').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('#') && link.getAttribute('target') !== '_blank') {
+                    link.addEventListener('click', e => {
+                        e.preventDefault();
+                        document.body.classList.add('fade-out');
+                        setTimeout(() => window.location.href = href, 150);
+                    });
+                }
+            });
+
             const themeToggle = document.getElementById('theme-toggle');
             const themeIcon = themeToggle.querySelector('ion-icon');
             function applyTheme(theme) {
@@ -126,7 +144,7 @@
                 applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
             });
 
-            // Staggered fade-in for contact bubbles
+            // Staggered fade-in for contact bubbles //
             document.querySelectorAll('.contact-bubble').forEach((el, i) => {
                 el.style.opacity = '0';
                 el.style.animation = `fadeInUp 0.5s ease ${i * 0.1 + 0.1}s forwards`;

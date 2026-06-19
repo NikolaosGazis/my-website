@@ -1,11 +1,17 @@
 html {
     scroll-behavior: smooth;
+    background-color: var(--bg-color);
 }
 
 /* Animations - Start */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(25px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pageFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 @keyframes float {
@@ -23,6 +29,16 @@ html {
     50%       { opacity: 0.3; }
 }
 /* Animations - End */
+
+/* Page fade-in on load */
+body {
+    animation: pageFadeIn 0.2s ease forwards;
+}
+
+body.fade-out {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
 
 /* Reset attributes for all elements */
 * {
@@ -71,6 +87,15 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: height 0.3s ease, box-shadow 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header.scrolled {
+    height: 65px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
 }
 
 /* Navigation Bar */
@@ -204,12 +229,9 @@ nav ul li a.active {
 /* About Elements - Start */
 .about {
     background: var(--bg-color);
-    position: absolute;
-    top: 0;
     width: 100%;
-    min-height: 100vh;
-    z-index: -1;
-    padding: 250px 0 50px;
+    min-height: calc(100vh - 90px);
+    padding: 100px 0 50px;
 }
 
 /* Flexbox layout to align the contents in About section */
@@ -424,12 +446,9 @@ nav ul li a.active {
 /* Work Elements - Start */
 .work {
     background: var(--bg-color);
-    position: absolute;
-    top: 0;
     width: 100%;
-    min-height: 100vh;
-    z-index: -1;
-    padding: 150px 0 50px;
+    min-height: calc(100vh - 90px);
+    padding: 60px 0 50px;
 }
 
 .work-hero {
@@ -487,12 +506,9 @@ nav ul li a.active {
 /* Contact Elements - Start */
 .contact {
     background: var(--bg-color);
-    position: absolute;
-    top: 0;
     width: 100%;
-    min-height: 100vh;
-    z-index: -1;
-    padding: 150px 0 50px;
+    min-height: calc(100vh - 90px);
+    padding: 60px 0 50px;
 }
 
 .contact-hero {
@@ -653,6 +669,11 @@ footer p {
     header {
         height: auto;
         padding: 15px 0;
+    }
+
+    header.scrolled {
+        height: auto;
+        box-shadow: none;
     }
 
     nav {
