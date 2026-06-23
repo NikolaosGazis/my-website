@@ -24,10 +24,6 @@ html {
     50%       { box-shadow: 0 0 90px var(--text-color), 0 0 140px rgba(0, 70, 139, 0.35); }
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.3; }
-}
 /* Animations - End */
 
 /* Page fade-in on load */
@@ -287,7 +283,7 @@ nav ul li a.active {
     border: none;
     outline: none;
     cursor: pointer;
-    transition: 0.3s ease-in;
+    transition: background-color 0.3s ease-in, color 0.3s ease-in, transform 0.3s ease-in;
     text-decoration: none;
 }
 
@@ -421,7 +417,7 @@ nav ul li a.active {
     height: 40px;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    transition: 0.4s ease; /* Hover smoothness */
+    transition: transform 0.4s ease; /* Hover smoothness */
 }
 
 .social-links a:hover {
@@ -660,12 +656,6 @@ footer p {
         font-size: 22px;
     }
 
-    nav ul {
-        font-size: 18px;
-        gap: 15px;
-        left: 0;
-    }
-
     header {
         height: auto;
         padding: 15px 0;
@@ -691,6 +681,7 @@ footer p {
     }
 
     nav ul {
+        font-size: 18px;
         display: none;
         flex-direction: column;
         width: 100%;

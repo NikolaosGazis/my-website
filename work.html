@@ -4,9 +4,9 @@
 
     <head>
         <meta charset="UTF-8">
-        <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+        <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>  <!-- Light/Dark Theme -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Helps with mimicking odler IE Versions - legacy tag -->
         <meta name="author" content="Nick Gazis">
         <meta name="description" content="Nick Gazis - Work & Projects. Portfolio of software development projects.">
         <meta name="theme-color" content="#222222">
@@ -29,7 +29,7 @@
         <header>
             <div class="container">
                 <nav>
-                    <div class="name">
+                    <div class="name"> <!-- Mini Logo -->
                         <div class="ng-logo"><span>N</span>G</div>
                         <a href="index.html"><span>Nick</span> Gazis</a>
                     </div>
@@ -38,7 +38,7 @@
                         <li><a href="work.html" class="active">Work</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
-                    <div class="nav-right">
+                    <div class="nav-right"> <!-- Toggle Light/Dark Theme -->
                         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                             <ion-icon name="moon"></ion-icon>
                         </button>
@@ -49,7 +49,7 @@
         </header>
 
         <section class="work">
-            <div class="container">
+            <div class="container"> <!-- Import GitHub containers showcasing stats pulled from my account -->
                 <div class="work-hero">
                     <h1>My Work</h1>
                     <p>A snapshot of my GitHub activity and most-used languages.</p>

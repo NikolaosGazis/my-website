@@ -4,9 +4,9 @@
 
     <head>
         <meta charset="UTF-8">
-        <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+        <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script> <!-- Light/Dark Theme -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Helps with mimicking odler IE Versions - legacy tag -->
         <meta name="author" content="Nick Gazis">
         <meta name="description" content="Nick Gazis - Software Developer. Computer Science and Telecommunications student at the University of Thessaly.">
         <meta name="theme-color" content="#222222">
@@ -32,7 +32,7 @@
         <header>
             <div class="container">
                 <nav>
-                    <div class="name">
+                    <div class="name"> <!-- Mini Logo -->
                         <div class="ng-logo"><span>N</span>G</div>
                         <a href="index.html"><span>Nick</span> Gazis</a>
                     </div>
@@ -41,7 +41,7 @@
                         <li><a href="work.html">Work</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
-                    <div class="nav-right">
+                    <div class="nav-right"> <!-- Toggle Light/Dark Theme -->
                         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                             <ion-icon name="moon"></ion-icon>
                         </button>
@@ -59,16 +59,16 @@
                             <span>Software Developer</span>
                             <div class="open-badge">Offline</div>
                         </div>
-                        <h1>About Me</h1>
+                        <h1>About Me</h1> <!-- Desc -->
                         <p> Hello! My name is Nick Gazis, a fifth-year Computer Science and Telecommunications student at the
                             <a href="https://www.uth.gr/en" target="_blank" rel="noopener noreferrer" class="inline-link">University of Thessaly</a>, Greece.
                             My academic studies have equipped me with a solid understanding in concepts like Algorithms, Data Structures, Machine Learning along with
                             Networking for complex problem solving.
                         </p>
-                        <div class="btn">
+                        <div class="btn"> <!-- CV -->
                             <a href="files/cv.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
                         </div>
-                        <div class="social">
+                        <div class="social"> <!-- Main Social Links -->
                             <div class="social-links">
                                 <a href="https://github.com/NikolaosGazis" target="_blank" rel="noopener noreferrer">
                                     <ion-icon name="logo-github"></ion-icon>
@@ -86,12 +86,12 @@
                         </div>
                     </div>
                     <div class="right">
-                        <div class="profile">
+                        <div class="profile"> <!-- Load myPicture -->
                             <img src="static/profile.png" alt="Nick Gazis">
                         </div>
                     </div>
                 </div>
-                <div class="skills-section">
+                <div class="skills-section"> <!-- Tech Stack -->
                     <h3>Tech Stack</h3>
                     <div class="skills">
                         <div class="skill-item">
@@ -156,58 +156,20 @@
             right.style.opacity = '0';
             right.style.animation = 'fadeInUp 0.6s ease 0.2s forwards';
 
-            // Text scramble on role badge //
+            // Typewriter on role badge //
             const roleEl = document.querySelector('.role-row span');
             const roleText = roleEl.textContent;
-            const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            let frame = 0;
-            const totalFrames = roleText.length * 3;
-            const scrambleInterval = setInterval(() => {
-                roleEl.textContent = roleText.split('').map((char, i) => {
-                    if (char === ' ') return ' ';
-                    if (i < Math.floor(frame / 3)) return char;
-                    return scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
-                }).join('');
-                if (++frame > totalFrames) {
-                    clearInterval(scrambleInterval);
+            roleEl.textContent = '|';
+            let idx = 0;
+            function typeRole() {
+                if (idx < roleText.length) {
+                    roleEl.textContent = roleText.substring(0, ++idx) + '|';
+                    setTimeout(typeRole, 75);
+                } else {
                     roleEl.textContent = roleText;
                 }
-            }, 35);
-
-            // Scroll reveal for skill items //
-            const skillObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                        skillObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.2 });
-            document.querySelectorAll('.skill-item').forEach((el, i) => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = `opacity 0.4s ease ${i * 0.08}s, transform 0.4s ease ${i * 0.08}s, border-color 0.3s ease, box-shadow 0.3s ease`;
-                skillObserver.observe(el);
-            });
-
-            // Nav shrink on scroll //
-            const header = document.querySelector('header');
-            window.addEventListener('scroll', () => {
-                header.classList.toggle('scrolled', window.scrollY > 50);
-            });
-
-            // Page transitions //
-            document.querySelectorAll('a[href]').forEach(link => {
-                const href = link.getAttribute('href');
-                if (href && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('#') && link.getAttribute('target') !== '_blank') {
-                    link.addEventListener('click', e => {
-                        e.preventDefault();
-                        document.body.classList.add('fade-out');
-                        setTimeout(() => window.location.href = href, 150);
-                    });
-                }
-            });
+            }
+            setTimeout(typeRole, 150);
         </script>
     </body>
 
