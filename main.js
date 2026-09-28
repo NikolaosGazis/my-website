@@ -8,6 +8,19 @@ if (burger && navLinks) {
 }
 
 
+// GitHub Stat Cards //
+// The external service bakes its colours into the image, so the URL itself has to change
+// with the theme. Both variants are stored in data-* on each <img>.
+function updateStatImages(theme) {
+    document.querySelectorAll('.github-stat-img').forEach(img => {
+        const next = theme === 'dark' ? img.dataset.srcDark : img.dataset.srcLight;
+        if (next && img.getAttribute('src') !== next) {
+            img.setAttribute('src', next);
+        }
+    });
+}
+
+
 // Theme Toggle //
 const themeToggle = document.getElementById('theme-toggle');
 if (themeToggle) {
@@ -19,6 +32,7 @@ if (themeToggle) {
             themeIcon.setAttribute('name', theme === 'dark' ? 'sunny' : 'moon');
         }
         localStorage.setItem('theme', theme);
+        updateStatImages(theme);
     };
 
     applyTheme(localStorage.getItem('theme') || 'dark');
@@ -134,3 +148,31 @@ document.querySelectorAll('.github-stat-img').forEach(img => {
         img.replaceWith(fallback);
     }, { once: true });
 });
+
+// Scroll Reveal //
+// The .reveal class is added here rather than in the HTML, so nothing is hidden for a
+// visitor without JS. Elements reveal once and are then unobserved.
+const revealTargets = document.querySelectorAll('.skills-section, .github-stats-section, .work-hero, footer');
+if (revealTargets.length && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('visible');
+
+            // Stagger the tech-stack tiles as the section arrives.
+            if (entry.target.classList.contains('skills-section')) {
+                entry.target.querySelectorAll('.skill-item').forEach((el, i) => {
+                    el.style.animation = `fadeInUp 0.5s ease ${i * 0.08}s backwards`;
+                });
+            }
+
+            obs.unobserve(entry.target);
+        });
+    }, { threshold: 0.15 });
+
+    revealTargets.forEach(el => {
+        el.classList.add('reveal');
+        revealObserver.observe(el);
+    });
+}

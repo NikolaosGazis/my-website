@@ -9,7 +9,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Helps with mimicking odler IE Versions - legacy tag -->
         <meta name="author" content="Nick Gazis">
         <meta name="description" content="Nick Gazis - Work & Projects. Portfolio of software development projects.">
-        <meta name="theme-color" content="#222222">
+        <meta name="theme-color" content="#f4f4f4" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#222222" media="(prefers-color-scheme: dark)">
+
+        <!-- Social Preview -->
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Nick Gazis">
+        <meta property="og:title" content="Nick Gazis - Work">
+        <meta property="og:description" content="Nick Gazis - Work & Projects. Portfolio of software development projects.">
+        <meta property="og:url" content="https://nikolaos-gazis.netlify.app/work.html">
+        <meta property="og:image" content="https://nikolaos-gazis.netlify.app/static/profile.png">
+        <meta name="twitter:card" content="summary_large_image">
         <title> Nick Gazis - Work </title>
 
         <!-- Google Fonts -->
@@ -52,12 +62,16 @@
             <div class="container"> <!-- Import GitHub containers showcasing stats pulled from my account -->
                 <div class="work-hero">
                     <h1>My Work</h1>
-                    <p>A snapshot of my GitHub activity and most-used languages.</p>
+                    <p>A snapshot of my GitHub contribution activity.</p>
                 </div>
 
                 <div class="github-stats-section">
                     <h3>GitHub Stats</h3>
-                    <img class="activity-graph github-stat-img" src="https://streak-stats.demolab.com/?user=NikolaosGazis&background=222222&border=3b3b3b&stroke=3b3b3b&ring=00468b&fire=00468b&currStreakLabel=00468b&sideLabels=c3c3c3&dates=c3c3c3&currStreakNum=ffffff&sideNums=ffffff&border_radius=10" alt="GitHub Streak" />
+                    <!-- src is swapped per theme by main.js; data-* holds both variants -->
+                    <img class="activity-graph github-stat-img" src="https://streak-stats.demolab.com/?user=NikolaosGazis&background=222222&border=3b3b3b&stroke=3b3b3b&ring=00468b&fire=00468b&currStreakLabel=00468b&sideLabels=c3c3c3&dates=c3c3c3&currStreakNum=ffffff&sideNums=ffffff&border_radius=10"
+                         data-src-dark="https://streak-stats.demolab.com/?user=NikolaosGazis&background=222222&border=3b3b3b&stroke=3b3b3b&ring=00468b&fire=00468b&currStreakLabel=00468b&sideLabels=c3c3c3&dates=c3c3c3&currStreakNum=ffffff&sideNums=ffffff&border_radius=10"
+                         data-src-light="https://streak-stats.demolab.com/?user=NikolaosGazis&background=f4f4f4&border=d0d0d0&stroke=d0d0d0&ring=00468b&fire=00468b&currStreakLabel=00468b&sideLabels=555555&dates=555555&currStreakNum=1a1a1a&sideNums=1a1a1a&border_radius=10"
+                         alt="GitHub Streak" />
                 </div>
 
                 <footer>
