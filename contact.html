@@ -73,7 +73,7 @@
                         </div>
                         <span>Gmail</span>
                     </a>
-                    <button type="button" class="contact-bubble" onclick="copyDiscord()">
+                    <button type="button" class="contact-bubble" id="discord-bubble">
                         <div class="bubble-icon">
                             <ion-icon name="logo-discord"></ion-icon>
                         </div>
@@ -107,27 +107,7 @@
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
         <!-- Shared Scripts (burger, theme toggle, nav shrink, page transitions) -->
-        <script src="script.js"></script>
-        <!-- Page-specific Scripts -->
-        <script>
-            // Staggered fade-in for contact bubbles //
-            document.querySelectorAll('.contact-bubble').forEach((el, i) => {
-                el.style.opacity = '0';
-                el.style.animation = `fadeInUp 0.5s ease ${i * 0.1 + 0.1}s forwards`;
-            });
-
-            function showToast(message) {
-                const toast = document.getElementById('toast');
-                toast.textContent = message;
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 2500);
-            }
-
-            function copyDiscord() {
-                navigator.clipboard.writeText('NTQ13').then(() => showToast('Discord username copied!'));
-            }
-
-        </script>
+        <script src="main.js"></script>
     </body>
 
 </html>

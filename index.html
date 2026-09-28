@@ -127,34 +127,7 @@
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <!-- Shared Scripts (burger, theme toggle, nav shrink, page transitions) -->
-        <script src="script.js"></script>
-        <!-- Page-specific Scripts -->
-        <script>
-            // Staggered fade-in for left content //
-            const fadeEls = document.querySelectorAll('.role-row, .left h1, .left p, .left .btn, .left .social');
-            fadeEls.forEach((el, i) => {
-                el.style.opacity = '0';
-                el.style.animation = `fadeInUp 0.6s ease ${(i + 1) * 0.18}s forwards`;
-            });
-            const right = document.querySelector('.right');
-            right.style.opacity = '0';
-            right.style.animation = 'fadeInUp 0.6s ease 0.2s forwards';
-
-            // Typewriter on role badge //
-            const roleEl = document.querySelector('.role-row span');
-            const roleText = roleEl.textContent;
-            roleEl.textContent = '|';
-            let idx = 0;
-            function typeRole() {
-                if (idx < roleText.length) {
-                    roleEl.textContent = roleText.substring(0, ++idx) + '|';
-                    setTimeout(typeRole, 75);
-                } else {
-                    roleEl.textContent = roleText;
-                }
-            }
-            setTimeout(typeRole, 150);
-        </script>
+        <script src="main.js"></script>
     </body>
 
 </html>
